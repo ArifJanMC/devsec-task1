@@ -1,0 +1,20 @@
+- name: Изменение порта SSH
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?Port '
+    line: 'Port 2222'
+  notify: Перезапуск SSH
+
+- name: Отключение аутентификации по паролю
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?PasswordAuthentication '
+    line: 'PasswordAuthentication no'
+  notify: Перезапуск SSH
+
+- name: Разрешение аутентификации только по ключу
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?PubkeyAuthentication '
+    line: 'PubkeyAuthentication yes'
+  notify: Перезапуск SSH

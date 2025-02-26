@@ -1,0 +1,16 @@
+- name: Создание пользователя test_user
+  user:
+    name: test_user
+    create_home: yes
+    shell: /bin/bash
+
+- name: Настройка ограничений для test_user через /etc/security/limits.conf
+  lineinfile:
+    path: /etc/security/limits.conf
+    line: 'test_user soft nofile 3'
+    insertafter: EOF
+
+- name: Проверка ограничений на открытые файлы
+  shell: sudo -u test_user sh -c 'ulimit -n'
+  register: ulimit_result
+  changed_when: false

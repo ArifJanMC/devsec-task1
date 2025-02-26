@@ -1,0 +1,20 @@
+- name: Установка ufw
+  apt:
+    name: ufw
+    state: present
+
+- name: Включение брандмауэра
+  ufw:
+    state: enabled
+
+- name: Запрет HTTP
+  ufw:
+    rule: deny
+    port: 80
+    proto: tcp
+
+- name: Разрешение HTTPS
+  ufw:
+    rule: allow
+    port: 443
+    proto: tcp

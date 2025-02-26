@@ -1,0 +1,11 @@
+- name: Установка прав на root каталог
+  file:
+    path: /root
+    mode: '700'
+
+- name: Установка прав на файл shadow
+  file:
+    path: /etc/shadow
+    mode: '600'
+    owner: root
+    group: root
