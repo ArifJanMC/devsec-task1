@@ -1,18 +1,19 @@
 resource "virtualbox_vm" "linux_hardening_vm" {
   name      = "linux-hardening-vm"
-  image     = "https://cloud.debian.org/images/cloud/bullseye/latest/debian-11-genericcloud-amd64.qcow2"
+  image     = "https://app.vagrantup.com/debian/boxes/bullseye64/versions/11.20230615.1/providers/virtualbox.box"
   cpus      = 2
   memory    = "2048 mib"
-
+  
+  # If you need to pass cloud-init or other initialization data
+  # Create a file in the same directory first
+  # user_data = file("${path.module}/user_data")
+  
   network_adapter {
     type           = "nat"
-    device         = "IntelPro1000MTServer"
-    host_interface = "vboxnet0"
+    host_interface = "vboxnet0"  # Make sure this interface exists
   }
+}
 
-  # Конфигурация для SSH доступа
-  provisioner "file" {
-    source      = "~/.ssh/id_rsa.pub"
-    destination = "/home/debian/authorized_keys"
-  }
+output "vm_ip" {
+  value = virtualbox_vm.linux_hardening_vm.network_adapter[0].ipv4_address
 }
