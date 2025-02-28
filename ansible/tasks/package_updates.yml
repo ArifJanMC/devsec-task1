@@ -1,4 +1,0 @@
-- name: Обновление всех пакетов
-  apt:
-    update_cache: yes
-    upgrade: dist
