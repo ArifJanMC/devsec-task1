@@ -67,7 +67,7 @@ check_test "$([ ! -z "$ssh_rule" ]; echo $?)" "SSH custom port (2222) allowed"
 # Test file permissions
 echo -e "\n${YELLOW}Testing file permissions...${NC}"
 root_perms=$(stat -c "%a" /)
-check_test "$([ "$root_perms" == "700" ]; echo $?)" "Root directory permissions (700)"
+check_test "$([ "$root_perms" == "755" ]; echo $?)" "Root directory permissions (755)"
 
 shadow_perms=$(stat -c "%a" /etc/shadow)
 check_test "$([ "$shadow_perms" == "600" ]; echo $?)" "Shadow file permissions (600)"

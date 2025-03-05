@@ -1,0 +1,15 @@
+server {
+    listen 80;
+    listen [::]:80;
+    
+    server_name {{ domain_name }};
+    
+    root /var/www/html;
+    index index.html index.htm;
+    
+    location / {
+        try_files $uri $uri/ =404;
+    }
+    
+    # Additional configuration will be added by certbot when SSL is set up
+}
