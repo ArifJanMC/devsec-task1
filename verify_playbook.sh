@@ -28,11 +28,6 @@ else
     echo "Using domain: $DOMAIN"
 fi
 
-# Run the Ansible playbook
-echo "============================================="
-echo "Running Ansible playbook..."
-echo "============================================="
-ansible-playbook -i inventory system-security-playbook.yml -e "domain=$DOMAIN" -v
 
 echo ""
 echo "============================================="
